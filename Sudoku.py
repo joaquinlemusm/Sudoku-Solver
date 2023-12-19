@@ -77,9 +77,14 @@ def solve(board):
             found.pop()
     return False
 
-print_sudoku(board)
+def main():
+    print("Original Sudoku:")
+    print_sudoku(board)
+    print()
 
-print()
+    solve(board)
 
-solve(board)
-print_sudoku(board)
+    print("\nSolved Sudoku:")
+    print_sudoku(board)
+
+main()
