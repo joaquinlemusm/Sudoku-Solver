@@ -45,9 +45,7 @@ def check_box(number, row, col, board):
     return True
 
 def is_safe(number, row, col, board):
-    if check_row(number, row, board) and check_column(number, col, board) and check_box(number, row, col, board):
-        return True
-    return False
+    return check_row(number, row, board) and check_column(number, col, board) and check_box(number, row, col, board)
 
 def empty_spaces(board):
     empty = []
