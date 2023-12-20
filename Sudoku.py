@@ -59,22 +59,17 @@ def empty_spaces(board):
 
 def solve(board):
     empty = empty_spaces(board)
-    size = len(empty)
-    found = []
     # Check if there are no empty spaces
-    if not empty and len(found) == size:
+    if not empty:
         return True # NO empty spaces left
     row, col = empty[0]
     for i in range(1, 10):
         if is_safe(i, row, col, board):
             board[row][col] = i
-            found.append(empty[0])
-            empty.pop(0)
-            if solve(board):
+            finished = solve(board)
+            if finished:
                 return True # Sudoku is solved
             board[row][col] = 0 # Backtrack
-            empty.insert(0, found[-1])
-            found.pop()
     return False
 
 def main():
@@ -84,7 +79,11 @@ def main():
 
     solve(board)
 
-    print("\nSolved Sudoku:")
-    print_sudoku(board)
+    if not solve(board):
+        print("No Solution")
+    else:
+        print("\nSolved Sudoku:")
+        print_sudoku(board)
 
-main()
+if __name__ == "__main__":
+    main()
